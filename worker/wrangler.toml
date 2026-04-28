@@ -1,0 +1,12 @@
+name = "pof-sync"
+main = "src/index.ts"
+compatibility_date = "2025-09-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "pof"
+database_id = "REPLACE_WITH_D1_ID"   # `wrangler d1 create pof` prints this
+
+# Daily cron — purge tombstones older than 30 days.
+[triggers]
+crons = ["17 4 * * *"]   # 04:17 UTC every day

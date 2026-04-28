@@ -1,0 +1,39 @@
+/* ClipSync palette — shared across all views */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=DM+Mono:wght@300;400;500&display=swap');
+
+:root {
+  --cs-bg: #0a0a0f;
+  --cs-pane: #0d0d14;
+  --cs-card: #111118;
+  --cs-card-hover: #141723;
+  --cs-border: #1e1e2e;
+  --cs-border-sel: #2a2f42;
+  --cs-text: #c8ccd4;
+  --cs-text-bright: #eceef6;
+  --cs-text-dim: #3a3a4a;
+  --cs-text-muted: #6b7280;
+  --cs-gold: #f59e0b;
+  --cs-green: #10b981;
+  --cs-red: #ef4444;
+  --cs-cyan: #60d0ff;
+  --cs-purple: #8070c8;
+  --cs-font-mono: 'IBM Plex Mono', 'DM Mono', 'Consolas', monospace;
+}
+
+/* Scrollbar styling for ClipSync views */
+.cs-scroll::-webkit-scrollbar { width: 5px; }
+.cs-scroll::-webkit-scrollbar-track { background: var(--cs-bg); }
+.cs-scroll::-webkit-scrollbar-thumb { background: #2a2a3a; border-radius: 3px; }
+.cs-scroll::-webkit-scrollbar-thumb:hover { background: #3a3a4a; }
+
+/* Toast animation */
+@keyframes cs-toast-pop {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(0.85); }
+  100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+/* Pulse animation for status dots */
+@keyframes cs-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}

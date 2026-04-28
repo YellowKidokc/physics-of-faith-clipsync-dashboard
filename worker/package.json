@@ -1,0 +1,22 @@
+{
+  "name": "pof-sync-worker",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "typecheck": "tsc --noEmit",
+    "migrate:local": "wrangler d1 execute pof --local --file ../server/migrations/0001_sync.sql",
+    "migrate:remote": "wrangler d1 execute pof --remote --file ../server/migrations/0001_sync.sql"
+  },
+  "dependencies": {
+    "diff-match-patch": "^1.0.5"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250903.0",
+    "@types/diff-match-patch": "^1.0.36",
+    "typescript": "^5.6.0",
+    "wrangler": "^3.80.0"
+  }
+}

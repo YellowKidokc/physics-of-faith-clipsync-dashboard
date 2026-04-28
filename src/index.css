@@ -1,0 +1,180 @@
+@import './styles/clipsync-theme.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Dark theme as default - matching the POF 2828 aesthetic */
+    --background: 220 15% 8%;
+    --foreground: 0 0% 95%;
+    --card: 220 15% 10%;
+    --card-foreground: 0 0% 95%;
+    --popover: 220 15% 10%;
+    --popover-foreground: 0 0% 95%;
+    --primary: 45 80% 52%;
+    --primary-foreground: 220 15% 8%;
+    --secondary: 220 10% 15%;
+    --secondary-foreground: 0 0% 95%;
+    --muted: 220 10% 15%;
+    --muted-foreground: 220 10% 60%;
+    --accent: 45 80% 52%;
+    --accent-foreground: 220 15% 8%;
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 10% 18%;
+    --input: 220 10% 18%;
+    --ring: 45 80% 52%;
+    --radius: 0.5rem;
+    
+    /* Custom colors */
+    --gold: 45 80% 52%;
+    --gold-rgb: 242, 201, 76;
+    
+    --sidebar-background: 220 15% 6%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 45 80% 52%;
+    --sidebar-primary-foreground: 220 15% 8%;
+    --sidebar-accent: 220 10% 15%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 220 10% 18%;
+    --sidebar-ring: 45 80% 52%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    @apply scroll-smooth;
+  }
+  
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer utilities {
+  /* Gold color utility */
+  .text-gold {
+    color: hsl(var(--gold));
+  }
+  
+  .bg-gold {
+    background-color: hsl(var(--gold));
+  }
+  
+  .border-gold {
+    border-color: hsl(var(--gold));
+  }
+  
+  /* Custom scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted));
+    border-radius: 3px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground));
+  }
+  
+  /* Line clamp utilities */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  /* Animation utilities */
+  .animate-in {
+    animation: animate-in 0.15s ease-out;
+  }
+  
+  .fade-in {
+    animation: fade-in 0.15s ease-out;
+  }
+  
+  .zoom-in-95 {
+    animation: zoom-in-95 0.15s ease-out;
+  }
+  
+  @keyframes animate-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes zoom-in-95 {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  /* Bounce animation delays */
+  .delay-100 {
+    animation-delay: 100ms;
+  }
+  
+  .delay-200 {
+    animation-delay: 200ms;
+  }
+}
+
+/* Search highlight */
+mark.search-highlight {
+  background-color: hsl(var(--gold) / 0.3);
+  color: hsl(var(--gold));
+  padding: 0 2px;
+  border-radius: 2px;
+}
+
+/* Focus styles */
+input:focus, textarea:focus {
+  outline: none;
+  ring: 2px;
+  ring-color: hsl(var(--gold) / 0.5);
+}
+
+/* Selection styles */
+::selection {
+  background-color: hsl(var(--gold) / 0.3);
+  color: hsl(var(--foreground));
+}
