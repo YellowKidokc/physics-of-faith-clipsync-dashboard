@@ -31,13 +31,6 @@ export function TTSView() {
   const [tab, setTab] = useState<'speak' | 'filters' | 'voice'>('speak');
   const voiceResolved = useRef(false);
 
-  // Find voice index by name substring (case-insensitive)
-  const findVoiceByName = (list: SpeechSynthesisVoice[], name: string): number => {
-    const lower = name.toLowerCase();
-    const idx = list.findIndex(v => v.name.toLowerCase().includes(lower));
-    return idx >= 0 ? idx : 0;
-  };
-
   // Load voices + resolve saved/default voice by name
   useEffect(() => {
     const load = () => {
