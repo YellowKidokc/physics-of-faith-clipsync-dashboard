@@ -1,5 +1,5 @@
-# POF 2828 — Canonical Manifest
-## Repo: github.com/YellowKidokc/pof2828
+# Physics of Faith — Canonical Manifest
+## Repo: github.com/YellowKidokc/physics-of-faith
 ## April 27 2026
 
 ---

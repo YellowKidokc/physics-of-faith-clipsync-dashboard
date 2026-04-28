@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { useBookmarksAPI } from '@/hooks/useBookmarksAPI';
 import type { Bookmark } from '@/hooks/useBookmarksAPI';
 
-const SEARCH_HISTORY_KEY = 'pof2828_research_search_history';
+const SEARCH_HISTORY_KEY = 'physics-of-faith_research_search_history';
 
 const PRESETS = {
   general:  { label: 'General',       filter: '' },

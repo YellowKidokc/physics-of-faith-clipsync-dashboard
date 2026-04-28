@@ -1,4 +1,4 @@
-# POF 2828 — Cloud Sync Worker
+# Physics of Faith — Cloud Sync Worker
 
 Cloudflare Worker + D1 that mirrors the five synced tables (`clips`,
 `notes`, `bookmarks`, `prompts`, `tasks`) across every enrolled device.

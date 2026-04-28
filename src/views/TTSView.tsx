@@ -13,7 +13,7 @@ const FILTERS: { id: string; label: string; desc: string; fn: (t: string) => str
   { id: 'parens', label: 'Strip parentheticals', desc: '(...) and [...]', fn: t => t.replace(/\([^)]*\)/g, ' ').replace(/\[[^\]]*\]/g, ' '), default: false },
 ];
 
-const STORAGE_KEY = 'pof2828_tts';
+const STORAGE_KEY = 'physics-of-faith_tts';
 const DEFAULT_VOICE = 'BrianMultilingual';
 
 export function TTSView() {

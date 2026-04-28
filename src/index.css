@@ -6,7 +6,7 @@
 
 @layer base {
   :root {
-    /* Dark theme as default - matching the POF 2828 aesthetic */
+    /* Dark theme as default - matching the Physics of Faith aesthetic */
     --background: 220 15% 8%;
     --foreground: 0 0% 95%;
     --card: 220 15% 10%;

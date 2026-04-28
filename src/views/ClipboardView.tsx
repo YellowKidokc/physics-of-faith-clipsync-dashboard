@@ -176,7 +176,7 @@ export function ClipboardView() {
         </div>
         <div style={css.brandBadge}>
           <span style={css.dot} className="animate-pulse" />
-          {' '}POF 2828
+          {' '}Physics of Faith
         </div>
       </div>
 

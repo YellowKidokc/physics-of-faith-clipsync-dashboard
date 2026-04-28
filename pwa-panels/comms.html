@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>POF 2828 — Comms</title>
+<title>Physics of Faith — Comms</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -70,7 +70,7 @@ body{font-family:var(--font);font-size:11px;background:var(--bg);color:var(--tex
 <body>
 <div class="topbar">
   <span class="status-dot" id="statusDot"></span>
-  <span class="brand">POF 2828 &middot; COMMS</span>
+  <span class="brand">Physics of Faith &middot; COMMS</span>
   <div class="topbar-right">
     <button class="broadcast-btn" onclick="openBroadcast()">&#x1F4E1; BROADCAST ALL</button>
   </div>
@@ -171,7 +171,7 @@ async function sendBroadcast(){
 }
 async function poll(){
   if(!activeChannel)return;
-  try{const r=await fetch(COMMS+'/messages?channel='+activeChannel.id+'&limit=50');if(r.ok){const fresh=await r.json();const was=messages.length;messages=fresh;renderMessages();if(fresh.length>was&&fresh[fresh.length-1].from_agent!==FROM&&!document.hasFocus()&&Notification.permission==='granted'){new Notification('POF 2828',{body:fresh[fresh.length-1].from_agent+': '+fresh[fresh.length-1].message.slice(0,80)});}online=true;}}catch(_){online=false;}
+  try{const r=await fetch(COMMS+'/messages?channel='+activeChannel.id+'&limit=50');if(r.ok){const fresh=await r.json();const was=messages.length;messages=fresh;renderMessages();if(fresh.length>was&&fresh[fresh.length-1].from_agent!==FROM&&!document.hasFocus()&&Notification.permission==='granted'){new Notification('Physics of Faith',{body:fresh[fresh.length-1].from_agent+': '+fresh[fresh.length-1].message.slice(0,80)});}online=true;}}catch(_){online=false;}
   document.getElementById('statusDot').classList.toggle('offline',!online);
 }
 document.addEventListener('DOMContentLoaded',init);

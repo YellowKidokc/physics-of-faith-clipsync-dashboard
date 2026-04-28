@@ -1,7 +1,7 @@
-// ─── POF 2828 — D1 sync orchestrator ───
+// ─── Physics of Faith — D1 sync orchestrator ───
 //
 // Pulls then pushes per table against the Cloudflare Worker. Source of
-// truth on the client is localStorage under `pof2828_<table>` (the same
+// truth on the client is localStorage under `physics-of-faith_<table>` (the same
 // keys useDashboardStore reads/writes). The cloud is a strict mirror.
 //
 // Cursor tracking (per table, in localStorage):
@@ -22,11 +22,11 @@ type TableName = 'clips' | 'notes' | 'bookmarks' | 'prompts' | 'tasks';
 const TABLES: TableName[] = ['clips', 'notes', 'bookmarks', 'prompts', 'tasks'];
 
 const STORAGE_KEY: Record<TableName, string> = {
-  clips: 'pof2828_clips',
-  notes: 'pof2828_notes',
-  bookmarks: 'pof2828_bookmarks',
-  prompts: 'pof2828_prompts',
-  tasks: 'pof2828_tasks',
+  clips: 'physics-of-faith_clips',
+  notes: 'physics-of-faith_notes',
+  bookmarks: 'physics-of-faith_bookmarks',
+  prompts: 'physics-of-faith_prompts',
+  tasks: 'physics-of-faith_tasks',
 };
 
 const REV_KEY = (t: TableName) => `pof_last_rev_${t}`;

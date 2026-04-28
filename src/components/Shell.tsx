@@ -144,7 +144,7 @@ export function Shell({ views, activeView, onViewChange, children }: ShellProps)
       <div style={css.container}>
         <div className="shell-sidebar" style={css.sidebar}>
           <div style={css.sidebarHeader}>
-            {sidebarOpen && <span style={css.brand}>POF 2828</span>}
+            {sidebarOpen && <span style={css.brand}>Physics of Faith</span>}
             <button style={css.toggleBtn} onClick={() => setSidebarOpen(!sidebarOpen)}>
               {sidebarOpen ? '\u25C0' : '\u25B6'}
             </button>

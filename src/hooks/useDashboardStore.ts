@@ -18,18 +18,18 @@ import type {
 
 // ─── STORAGE KEYS ───
 const STORAGE_KEYS = {
-  clips: 'pof2828_clips',
-  notes: 'pof2828_notes',
-  tags: 'pof2828_tags',
-  files: 'pof2828_files',
-  bookmarks: 'pof2828_bookmarks',
-  tasks: 'pof2828_tasks',
-  projects: 'pof2828_projects',
-  summaries: 'pof2828_summaries',
-  prompts: 'pof2828_prompts',
-  customPages: 'pof2828_custom_pages',
-  settings: 'pof2828_settings',
-  view: 'pof2828_current_view',
+  clips: 'physics-of-faith_clips',
+  notes: 'physics-of-faith_notes',
+  tags: 'physics-of-faith_tags',
+  files: 'physics-of-faith_files',
+  bookmarks: 'physics-of-faith_bookmarks',
+  tasks: 'physics-of-faith_tasks',
+  projects: 'physics-of-faith_projects',
+  summaries: 'physics-of-faith_summaries',
+  prompts: 'physics-of-faith_prompts',
+  customPages: 'physics-of-faith_custom_pages',
+  settings: 'physics-of-faith_settings',
+  view: 'physics-of-faith_current_view',
 };
 
 // ─── DEFAULT PROMPTS ───
@@ -474,7 +474,7 @@ export function useDashboardStore() {
     const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
-    a.download = `pof2828-export-${todayStr}.json`;
+    a.download = `physics-of-faith-export-${todayStr}.json`;
     a.click();
     URL.revokeObjectURL(a.href);
   }, [clips, notes, tags, bookmarks, tasks, projects, prompts, customPages, summaries]);

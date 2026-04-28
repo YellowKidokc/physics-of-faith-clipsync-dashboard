@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Task Calendar · POF 2828</title>
+<title>Task Calendar · Physics of Faith</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600;700&display=swap');
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -397,10 +397,10 @@ body.sb-collapsed .sidebar{width:0;border-right:none;overflow:hidden;}
 // ═══════════════════════════════════════════
 //  DATA LAYER
 // ═══════════════════════════════════════════
-const STORAGE_KEY = 'pof2828_tasks';
-const PROJ_KEY = 'pof2828_projects';
-const SUMMARY_KEY = 'pof2828_summaries';
-const PREFS_KEY = 'pof2828_prefs';
+const STORAGE_KEY = 'physics-of-faith_tasks';
+const PROJ_KEY = 'physics-of-faith_projects';
+const SUMMARY_KEY = 'physics-of-faith_summaries';
+const PREFS_KEY = 'physics-of-faith_prefs';
 
 const DEFAULT_PROJECTS = [
   {id:'proj_today',name:'TODAY',color:'#E05C6E'},
@@ -414,7 +414,7 @@ let tasks = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
 
 // ── SEED: Claude Code session 2026-03-21 ──
 (function seedOnce(){
-  const SEED_KEY = 'pof2828_seeded_20260321';
+  const SEED_KEY = 'physics-of-faith_seeded_20260321';
   if(localStorage.getItem(SEED_KEY)) return;
   const today = '2026-03-21';
   const seedTasks = [
@@ -433,7 +433,7 @@ let tasks = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
 
 // ── SEED: Claude Opus session 2026-03-21 (evening) ──
 (function seedOpus20260321(){
-  const SEED_KEY = 'pof2828_seeded_opus_20260321';
+  const SEED_KEY = 'physics-of-faith_seeded_opus_20260321';
   if(localStorage.getItem(SEED_KEY)) return;
   const today = '2026-03-21';
   const tomorrow = '2026-03-22';
@@ -469,7 +469,7 @@ let tasks = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
 
 // ── SEED: Claude Opus session 2026-03-21 (night) — 7Q Truth Engine build ──
 (function seedOpus7Q20260321(){
-  const SEED_KEY = 'pof2828_seeded_opus7q_20260321';
+  const SEED_KEY = 'physics-of-faith_seeded_opus7q_20260321';
   if(localStorage.getItem(SEED_KEY)) return;
   const today = '2026-03-21';
   const tomorrow = '2026-03-22';
@@ -494,7 +494,7 @@ let tasks = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
 
 // ── SEED: Claude Opus session 2026-03-21 — 7Q Framework Full Build (afternoon/evening) ──
 (function seedOpusFullBuild20260321(){
-  const SEED_KEY = 'pof2828_seeded_opus_fullbuild_20260321';
+  const SEED_KEY = 'physics-of-faith_seeded_opus_fullbuild_20260321';
   if(localStorage.getItem(SEED_KEY)) return;
   const today = '2026-03-21';
   const tomorrow = '2026-03-22';
@@ -549,7 +549,7 @@ let tasks = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
 
 // ── SEED: Claude Opus session 2026-03-21 — 7Q Workbook 20-Sheet Build ──
 (function seedOpusWorkbook20260321(){
-  const SEED_KEY = 'pof2828_seeded_opus_workbook_20260321';
+  const SEED_KEY = 'physics-of-faith_seeded_opus_workbook_20260321';
   if(localStorage.getItem(SEED_KEY)) return;
   const today = '2026-03-21';
   const tomorrow = '2026-03-22';
@@ -580,7 +580,7 @@ let tasks = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
 
 // ── SEED: Claude Code session 2026-03-21 (late night) — Formal Papers MD→DOCX ──
 (function seedCC_FormalPapers20260321(){
-  const SEED_KEY = 'pof2828_seeded_cc_formalpapers_20260321';
+  const SEED_KEY = 'physics-of-faith_seeded_cc_formalpapers_20260321';
   if(localStorage.getItem(SEED_KEY)) return;
   const today = '2026-03-21';
   const seedTasks = [
@@ -596,7 +596,7 @@ let tasks = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
 
 // ── SEED: Claude Opus session 2026-03-21 — Theophysics v3 Vault Rebuild + 7Q Engine Template ──
 (function seedOpusVaultRebuild20260321(){
-  const SEED_KEY = 'pof2828_seeded_opus_vault_rebuild_20260321';
+  const SEED_KEY = 'physics-of-faith_seeded_opus_vault_rebuild_20260321';
   if(localStorage.getItem(SEED_KEY)) return;
   const today = '2026-03-21';
   const tomorrow = '2026-03-22';
@@ -649,7 +649,7 @@ let tasks = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
 })();
 
 (function seedOpus20260322(){
-  const SEED_KEY = 'pof2828_seeded_opus_2026_03_22';
+  const SEED_KEY = 'physics-of-faith_seeded_opus_2026_03_22';
   if(localStorage.getItem(SEED_KEY)) return;
   const today = '2026-03-22';
   const seedTasks = [
@@ -1395,7 +1395,7 @@ function exportData(){
   const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
   const a=document.createElement('a');
   a.href=URL.createObjectURL(blob);
-  a.download='pof2828-tasks-'+todayStr()+'.json';
+  a.download='physics-of-faith-tasks-'+todayStr()+'.json';
   a.click();
 }
 function importData(){document.getElementById('importFile').click();}
