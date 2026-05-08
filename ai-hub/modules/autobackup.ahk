@@ -6,7 +6,7 @@ Hub_RunBackup() {
     global CFG_DIR
 
     ; Use D:\ if available, fall back to C:\
-    backupRoot := DirExist("D:\") ? "D:\AI-HUB-BACKUP" : "C:\AI-HUB-BACKUP"
+    backupRoot := DirExist("B:\") ? "B:\AI-HUB-BACKUP" : (DirExist("D:\") ? "D:\AI-HUB-BACKUP" : "C:\AI-HUB-BACKUP")
     latestDir  := backupRoot "\latest"
     dailyDir   := backupRoot "\daily\" FormatTime(, "yyyy-MM-dd")
 
@@ -29,11 +29,12 @@ Hub_RunBackup() {
     }
 
     ; Back up Data folder (clips, prompts, bookmarks JSON) — may not exist on fresh installs
-    dataDir := A_ScriptDir "\clipsync-bridge\data"
-    if DirExist(dataDir) {
-        Loop Files dataDir "\*.*" {
-            try FileCopy(A_LoopFileFullPath, latestDir "\Data\" A_LoopFileName, true)
-            try FileCopy(A_LoopFileFullPath, dailyDir  "\Data\" A_LoopFileName, true)
+    for , dataDir in [A_ScriptDir "\Data", A_ScriptDir "\clipsync-bridge\data"] {
+        if DirExist(dataDir) {
+            Loop Files dataDir "\*.*" {
+                try FileCopy(A_LoopFileFullPath, latestDir "\Data\" A_LoopFileName, true)
+                try FileCopy(A_LoopFileFullPath, dailyDir  "\Data\" A_LoopFileName, true)
+            }
         }
     }
 }

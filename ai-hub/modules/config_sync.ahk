@@ -3,7 +3,7 @@
 ;         export on close + every 30 minutes
 ; ============================================================
 
-global SYNC_DIR := DirExist("D:\") ? "D:\AI-HUB-SYNC" : "C:\AI-HUB-SYNC"
+global SYNC_DIR := DirExist("B:\") ? "B:\AI-HUB-SYNC" : (DirExist("D:\") ? "D:\AI-HUB-SYNC" : "C:\AI-HUB-SYNC")
 
 ; Files to sync between local config and sync directory
 global SYNC_FILES := ["hotkeys.ini", "hotstrings.sav", "settings.ini", "prompts.json",

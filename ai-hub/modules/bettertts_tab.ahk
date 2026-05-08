@@ -390,7 +390,7 @@ TTS_QuickSave() {
 }
 
 ; ---- CapsLock hotkeys ----
-CapsLock & c:: {
+TTS_Legacy_CapsC(*) {
     global gTTS_TextEdit, gTTS_NormChk
     SetCapsLockState("AlwaysOff")
 
@@ -436,17 +436,17 @@ CapsLock & c:: {
     SetTimer(() => TTS_DoSpeak(text), -1)
 }
 
-CapsLock & v:: {
+TTS_Legacy_CapsV(*) {
     SetCapsLockState("AlwaysOff")
     TTS_Speak()
 }
 
-CapsLock & p:: {
+TTS_Legacy_CapsP(*) {
     SetCapsLockState("AlwaysOff")
     TTS_Pause()
 }
 
-CapsLock & s:: {
+TTS_Legacy_CapsS(*) {
     SetCapsLockState("AlwaysOff")
     TTS_Stop()
 }

@@ -33,6 +33,9 @@
 ; BetterTTS: TTS status and controls tab (process runs separately)
 #include bettertts_tab.ahk
 
+; Nerve TTS: PWA voice engine controlled by CapsLock+C / CapsLock+Space
+#include nerve_tts_bridge.ahk
+
 ; Auto-Backup: copies config + data to backup directory on every startup
 #include autobackup.ahk
 

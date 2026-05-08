@@ -1,11 +1,11 @@
 // ══════��════════════════════════════════════════════════════════════
 // COMMS API — Theophysics AI Communications Hub
-// Targets: ai-comms-hub.davidokc28.workers.dev (Brief 03 fix pending)
+// Targets: comms.faiththruphysics.com
 // Schema: messages(id, channel, sender, content, timestamp, read_by)
 //         channels(id, name, display_name, created_at, last_seen, orientation_complete, role)
 // ═══════════════��═══════════════════════════════════════════════════
 
-const COMMS_URL = 'https://ai-comms-hub.davidokc28.workers.dev';
+const COMMS_URL = 'https://comms.faiththruphysics.com';
 const STORAGE_KEY_URL = 'pof_comms_url';
 const STORAGE_KEY_TOKEN = 'pof_comms_token';
 const STORAGE_KEY_CHANNEL = 'pof_comms_channel';
@@ -29,12 +29,38 @@ export interface CommsChannel {
   role: string;
 }
 
+type ChannelsResponse = CommsChannel[] | { channels?: CommsChannel[] };
+type MessagesResponse = CommsMessage[] | {
+  channel?: string;
+  pinned?: unknown[];
+  unread?: CommsMessage[];
+  messages?: CommsMessage[];
+};
+
+const TOKEN_BY_CHANNEL: Record<string, string> = {
+  broadcast: 'theophysics-david-2026',
+  general: 'theophysics-david-2026',
+  david: 'theophysics-david-2026',
+  opus: 'theophysics-opus-2026',
+  sonnet: 'theophysics-sonnet-2026',
+  codex: 'theophysics-codex-2026',
+  haiku: 'theophysics-haiku-2026',
+  gemini: 'theophysics-gemini-2026',
+  gpt: 'theophysics-gpt-2026',
+  kimi: 'theophysics-kimi-2026',
+  'claude-desktop': 'theophysics-claude-desktop-2026',
+  'claude-code': 'theophysics-claude-code-2026',
+  cowork: 'theophysics-cowork-2026',
+};
+
 function getBaseUrl(): string {
   return localStorage.getItem(STORAGE_KEY_URL) || COMMS_URL;
 }
 
 function getToken(): string {
-  return localStorage.getItem(STORAGE_KEY_TOKEN) || '';
+  const stored = localStorage.getItem(STORAGE_KEY_TOKEN);
+  if (stored) return stored;
+  return TOKEN_BY_CHANNEL[getMyChannel()] || 'theophysics-david-2026';
 }
 
 export function getMyChannel(): string {
@@ -73,7 +99,8 @@ async function commsPost<T = unknown>(path: string, body: unknown): Promise<T> {
 // ─── Public API ───
 
 export async function fetchChannels(): Promise<CommsChannel[]> {
-  return commsGet<CommsChannel[]>('/channels');
+  const data = await commsGet<ChannelsResponse>('/channels');
+  return Array.isArray(data) ? data : data.channels || [];
 }
 
 export async function fetchStatus(): Promise<CommsChannel[]> {
@@ -82,25 +109,41 @@ export async function fetchStatus(): Promise<CommsChannel[]> {
 
 export async function fetchUnread(channel?: string): Promise<CommsMessage[]> {
   const ch = channel || getMyChannel();
-  return commsGet<CommsMessage[]>(`/channel/${ch}/unread`);
+  const data = await commsGet<MessagesResponse>(`/channel/${ch}/unread`);
+  if (Array.isArray(data)) return data;
+  return data.unread || data.messages || [];
 }
 
 export async function fetchMessages(channel: string, limit = 50): Promise<CommsMessage[]> {
-  return commsGet<CommsMessage[]>(`/channel/${channel}?limit=${limit}`);
+  const data = await commsGet<MessagesResponse>(`/channel/${channel}?limit=${limit}`);
+  if (Array.isArray(data)) return data;
+  return data.messages || data.unread || [];
 }
 
 export async function fetchBroadcast(limit = 50): Promise<CommsMessage[]> {
-  return commsGet<CommsMessage[]>(`/broadcast?limit=${limit}`);
+  return fetchMessages('broadcast', limit);
 }
 
 export async function sendMessage(to: string, content: string, priority = 'normal', category = 'message'): Promise<unknown> {
   const from = getMyChannel();
-  return commsPost(`/channel/${from}`, { to, content, priority, category });
+  return commsPost(`/channel/${to}`, { sender: from, content, priority, category });
 }
 
 export async function sendBroadcast(content: string, priority = 'high', category = 'session-log'): Promise<unknown> {
   const from = getMyChannel();
-  return commsPost(`/channel/${from}`, { to: 'broadcast', content, priority, category });
+  return commsPost('/broadcast', { sender: from, content, priority, category });
+}
+
+export async function markChannelRead(channel: string): Promise<boolean> {
+  try {
+    const res = await fetch(getBaseUrl() + `/channel/${channel}/mark-read`, {
+      method: 'POST',
+      headers: { 'Authorization': `Bearer ${getToken()}` },
+    });
+    return res.ok;
+  } catch {
+    return false;
+  }
 }
 
 export async function checkCommsOnline(): Promise<boolean> {
